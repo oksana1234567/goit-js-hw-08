@@ -36,7 +36,33 @@ function createGalleryMarkup(gallerysObject) {
     .join('');
 };
 
-console.log(galleryContainer);
+
+
+
+
+// const createGalleryMarkup = function(item) {
+  
+//       const liElement = document.createElement('li');
+//       liElement.classList.add('gallery__item');
+
+//       const aElement = document.createElement('a');
+//       aElement.classList.add('gallery__link');
+//       aElement.setAttribute('href', `${item.original}`);
+
+//       const imgElement = document.createElement('img');
+//       imgElement.classList.add('allery__image');
+//       imgElement.setAttribute('src', `${item.preview}`);
+//         imgElement.dataset.source = item.original;
+//       imgElement.setAttribute('alt', `${item.description}`);
+      
+//       liElement.append(aElement, imgElement);
+    
+//       return liElement;
+// };
+      
+// const createCards = gallerysObj.map(createGalleryMarkup);
+// galleryContainer.append(...createCards);
+
 // ______________прослушивание клика и модалка
 galleryContainer.addEventListener('click', onGalleryContainerClick);
 
@@ -51,8 +77,10 @@ function onGalleryContainerClick(event) {
 
     modalContainer.classList.add('is-open');
     
-modalImage.src = `${event.target.dataset.source}`;
-modalImage.alt = `${event.target.alt}`;
+modalImage.src = event.target.dataset.source;
+modalImage.alt = event.target.alt;
+
+  window.addEventListener("keydown", onEscKeyPress);
     
 };
 
@@ -68,18 +96,20 @@ modalImage.alt = '';
 // Закрытие модального окна по клику на div.lightbox__overlay
 
 const modalBackdrop = document.querySelector('.lightbox__overlay');
-modalBackdrop.addEventListener('click', onBackdropClick);
+modalBackdrop.addEventListener('click', onModalClosingClick);
 
-function onBackdropClick(event) {
-  if (event.currentTarget === event.target) {
+window.removeEventListener("keydown", onEscKeyPress);
+
+// function onBackdropClick(event) {
+//   if (event.currentTarget === event.target) {
     
-    onModalClosingClick();
-  }
-}
+//     onModalClosingClick();
+//   }
+// }
 
 // Закрытие модального окна по нажатию клавиши ESC
 
-window.addEventListener("keydown", onEscKeyPress);
+// window.addEventListener("keydown", onEscKeyPress);
 
 
 function onEscKeyPress(event) {
@@ -92,3 +122,22 @@ function onEscKeyPress(event) {
   }
 };
 
+// Пролистывание изображений галереи в открытом модальном окне клавишами "влево" и "вправо".
+//  'ArrowLeft'
+// 'ArrowRight'
+
+// window.addEventListener("keydown", onRightLeftPress);
+
+// function onRightLeftPress(event) {
+  
+//     const leftKeyCode = 'ArrowLeft';
+//     const rightKeyCode = 'ArrowRight';
+
+//     if(event.code === leftKeyCode) {
+        
+//     } else if(event.code === rightKeyCode) {
+        
+//     }
+
+
+// };
