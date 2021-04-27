@@ -91,14 +91,15 @@ modalClosingRef.addEventListener('click', onModalClosingClick);
 function onModalClosingClick() {
     modalContainer.classList.remove('is-open');
 modalImage.src = '';
-modalImage.alt = '';
+  modalImage.alt = '';
+  window.removeEventListener("keydown", onEscKeyPress);
 };
 // Закрытие модального окна по клику на div.lightbox__overlay
 
 const modalBackdrop = document.querySelector('.lightbox__overlay');
 modalBackdrop.addEventListener('click', onModalClosingClick);
 
-window.removeEventListener("keydown", onEscKeyPress);
+
 
 // function onBackdropClick(event) {
 //   if (event.currentTarget === event.target) {
